@@ -1,0 +1,20 @@
+/* 
+    Created on : Jan 13, 2017, 10:56:26 AM
+    Author     : crodenberg01
+*/
+body{
+    margin: 0;
+    width: 100%
+}
+.header{
+    background-color: #e3e3e3;
+    height: 100px;
+    width: 100%
+}
+.header-logo{
+    text-indent: -500px;
+}
+.header-left{
+    float: left;
+    position: relative;
+}
