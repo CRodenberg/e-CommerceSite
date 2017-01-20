@@ -6,15 +6,35 @@ body{
     margin: 0;
     width: 100%
 }
-.header{
-    background-color: #e3e3e3;
+header{
+    background-color: #1CCFEB;
     height: 100px;
     width: 100%
 }
 .header-logo{
     text-indent: -500px;
+    margin-left: -500px;
 }
-.header-left{
+.nav-left{
     float: left;
     position: relative;
+    width: 200px;
+}
+.nav-left img{
+    margin-left: 415px;
+}
+.nav-search{
+    width: auto;
+    float: left;
+}
+#twotabsearchtextbox{
+    width: 600px;
+    padding: 7px;
+    margin-top: 15px;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.nav-right{
+    float:right;
+    width: 300px;
 }
