@@ -8,7 +8,7 @@ body{
 }
 header{
     background-color: #1CCFEB;
-    height: 100px;
+    height: 90px;
     width: 100%
 }
 .header-logo{
@@ -27,8 +27,12 @@ header{
     width: auto;
     float: left;
 }
+.nav-input{
+    padding: 7px;
+    margin-left: -4px;
+}
 #twotabsearchtextbox{
-    width: 600px;
+    width: 800px;
     padding: 7px;
     margin-top: 15px;
     box-sizing: border-box;
