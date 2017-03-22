@@ -33,5 +33,5 @@ include('./includes/header.html');
         </div>
         <!-- /#content -->
 <?php
-include('/includes/footer.html');
+include('./includes/footer.html');
 ?>
