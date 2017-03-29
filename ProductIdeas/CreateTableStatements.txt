@@ -1,9 +1,9 @@
 CREATE TABLE 'decade_categories'(
-    'id' TINYTEXT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
-    'category'VARCHAR(40) NOT NULL,
+    'id' TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'category' VARCHAR(40) NOT NULL,
     'description' TINYTEXT NOT NULL,
     'image' VARCHAR(45) NOT NULL,
-    PRIMARY KEY('id'),
+    PRIMARY KEY ('id'),
     UNIQUE KEY 'category' ('category')
 );
 CREATE TABLE 'decade_products'(
