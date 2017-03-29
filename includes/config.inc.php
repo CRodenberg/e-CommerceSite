@@ -10,7 +10,7 @@
 	define('MYSQL', BASE_URI . 'mysql.inc.php');
 
 	//Launch session to track logged-in users
-	session_start();
+	//session_start();
 
 	//Error-handling function
 	function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars){

@@ -1,0 +1,20 @@
+CREATE TABLE 'decade_categories'(
+    'id' TINYTEXT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'category'VARCHAR(40) NOT NULL,
+    'description' TINYTEXT NOT NULL,
+    'image' VARCHAR(45) NOT NULL,
+    PRIMARY KEY('id'),
+    UNIQUE KEY 'category' ('category')
+);
+CREATE TABLE 'decade_products'(
+    'id' MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'decade_category_id' TINYINT(3) UNSIGNED NOT NULL,
+    'name' VARCHAR(60) NOT NULL,
+    'description' TINYTEXT,
+    'image' VARCHAR(45) NOT NULL,
+    'price' INT(10) UNSIGNED NOT NULL,
+    'stock' MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
+    'date_created' TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ('id'),
+    KEY 'decade_category_id' ('decade_category_id')
+);

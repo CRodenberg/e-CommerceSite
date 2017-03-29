@@ -13,11 +13,11 @@
 
 	//Make data safer to use in queries by 1) removing slashes when Magic Quotes is enabled 2) Trimming extra spaces from data
 	//3) Running the data through the mysqli_real_escape_string() function
-	function escape_data($data, $dbc){
-		if(get_magic_quotes_gpc()){
-			$data = stripslashes($data);
-		}
-		return mysqli_real_escape_string($dbc, trim($data));
-	}//End escape_data
+	// function escape_data($data, $dbc){
+	// 	if(get_magic_quotes_gpc()){
+	// 		$data = stripslashes($data);
+	// 	}
+	// 	return mysqli_real_escape_string($dbc, trim($data));
+	// }//End escape_data
 
 
