@@ -3,12 +3,15 @@ CREATE TABLE 'decade_categories'(
     'category' VARCHAR(40) NOT NULL,
     'description' TINYTEXT NOT NULL,
     'image' VARCHAR(45) NOT NULL,
+    'start_date' DATE NOT NULL,
+    'end_date' DATE DEFAULT NULL,
     PRIMARY KEY ('id'),
     UNIQUE KEY 'category' ('category')
 );
+
 CREATE TABLE 'decade_products'(
     'id' MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-    'decade_category_id' TINYINT(3) UNSIGNED NOT NULL,
+    'decade_categories_id' TINYINT(3) UNSIGNED NOT NULL,
     'name' VARCHAR(60) NOT NULL,
     'description' TINYTEXT,
     'image' VARCHAR(45) NOT NULL,
@@ -16,5 +19,54 @@ CREATE TABLE 'decade_products'(
     'stock' MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
     'date_created' TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ('id'),
-    KEY 'decade_category_id' ('decade_category_id')
 );
+
+CREATE TABLE 'sales'(
+    'id' INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    'product_id' MEDIUMINT(8) UNSIGNED NOT NULL,
+    'price' INT(10) UNSIGNED NOT NULL,
+    'start_date' DATE NOT NULL,
+    'end_date' DATE DEFAULT NULL,
+    PRIMARY KEY ('id)
+);
+
+CREATE TABLE 'general_categories'(
+    'id' TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'category' VARCHAR(40) NOT NULL,
+    'description' TINYTEXT NOT NULL,
+    'image' VARCHAR(45) NOT NULL,
+    PRIMARY KEY ('id'),
+    UNIQUE KEY 'category' ('category')
+);
+
+CREATE TABLE 'specific_products'(
+    'id' MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'general_categories_id' TINYINT(3) UNSIGNED NOT NULL,
+    'name' VARCHAR(60) NOT NULL,
+    'description' TINYTEXT,
+    'image' VARCHAR(45) NOT NULL,
+    'price' INT(10) UNSIGNED NOT NULL,
+    'stock' MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
+    'date_created' TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ('id'),
+);
+
+CREATE TABLE 'sizes'(
+    'id' TINYTEXT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'size' VARCHAR(40) NOT NULL,
+    PRIMARY KEY ('id')
+);
+
+CREATE TABLE 'gender'(
+    'id' TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'class' VARCHAR(30) NOT NULL,
+    PRIMARY KEY ('id')
+);    
+   
+
+
+
+
+
+
+
