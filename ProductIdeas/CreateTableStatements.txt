@@ -52,7 +52,7 @@ CREATE TABLE 'specific_products'(
 );
 
 CREATE TABLE 'sizes'(
-    'id' TINYTEXT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+    'id' TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
     'size' VARCHAR(40) NOT NULL,
     PRIMARY KEY ('id')
 );
