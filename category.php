@@ -167,9 +167,20 @@ include('./includes/header.html')
                 <div class="col-md-9">
                     <div class="box">
                         <h1>Ladies</h1>
-                        <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>
+                        <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected from the past.</p>
                     </div>
-
+                    <div class="box">
+                        <h1>Men</h1>
+                        <p>Check out all of our latest products for Men. We have various items from the past, and customizable options as well!</p>
+                    </div>
+                    <div class="box">
+                        <h1>Boys</h1>
+                        <p>Check out all of our latest products for Boys. We have various items from the past, and customizable options as well!</p>
+                    </div>
+                    <div class="box">
+                        <h1>Girls</h1>
+                        <p>Check out all of our latest products for Girls. We have various items from the past, and customizable options as well!</p>
+                    </div>
                     <div class="box info-bar">
                         <div class="row">
                             <div class="col-sm-12 col-md-4 products-showing">
