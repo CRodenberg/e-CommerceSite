@@ -60,6 +60,128 @@ case "empty":
 break;
 
 
+*/ This code is for retrieving products from MySQL database using PHP and displaying in a responsive gallery view. 
+Since we are storing cart item in a session this code will start with a PHP session initialization. */
+
+<?php
+	session_start();
+	require_once("dbcontroller.php");
+	
+	// Database Configuration and Connection
+	$db_handle = new DBController();
+	
+	// To Add Product to Cart
+	if(!empty($_GET["action"]) && $_GET["action"] == "add") {
+		if(!empty($_POST["quantity"])) {
+			$productByCode = $db_handle->runQuery("SELECT * FROM tblproduct WHERE code='" . $_GET["code"] . "'");
+			$itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"]));
+			
+			if(!empty($_SESSION["cart_item"])) {
+				if(in_array($productByCode[0]["code"],$_SESSION["cart_item"])) {
+					foreach($_SESSION["cart_item"] as $k => $v) {
+							if($productByCode[0]["code"] == $k)
+								$_SESSION["cart_item"][$k]["quantity"] = $_POST["quantity"];
+					}
+				} else {
+					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+				}
+			} else {
+				$_SESSION["cart_item"] = $itemArray;
+			}
+		} // End if !empty(quantity)
+	}
+?>
+...
+<link href="style.css" type="text/css" rel="stylesheet" />
+</HEAD>
+<BODY>
+<?php
+$session_items = 0;
+if(!empty($_SESSION["cart_item"])){
+	$session_items = count($_SESSION["cart_item"]);
+}	
+?>
+<div id="product-grid">
+	
+	<div class="top_links">
+	<a href="shopping_cart.php" title="Cart">View Cart</a><br>
+	Total Items = <?php echo $session_items; ?>
+	</div>
+	
+	<div class="txt-heading">Products</div>
+	<?php
+	$product_array = $db_handle->runQuery("SELECT * FROM tblproduct ORDER BY id ASC");
+	if (!empty($product_array)) { 
+		foreach($product_array as $key=>$value){
+	?>
+		<div class="product-item">
+			<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
+			<div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>"></div>
+			<div><strong><?php echo $product_array[$key]["name"]; ?></strong></div>
+			<div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
+			<div><input type="text" name="quantity" value="1" size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
+			</form>
+		</div>
+	
+	<?php
+		}
+	}
+	?>
+</div>
+
+
+*/ In this code, we are getting cart items from the session and displaying them in a gallery. Each item in this gallery will show a delete icon on the mouse over an item to clear an individual item from the session. 
+And there will be a clear cart link to completely make the cart empty. */
+
+<?php
+session_start();
+require_once("dbcontroller.php");
+$db_handle = new DBController();
+if(!empty($_GET["action"])) {
+	switch($_GET["action"]) {
+		case "remove":
+			if(!empty($_SESSION["cart_item"])) {
+				foreach($_SESSION["cart_item"] as $k => $v) {
+						if($_GET["code"] == $k)
+							unset($_SESSION["cart_item"][$k]);				
+						if(empty($_SESSION["cart_item"]))
+							unset($_SESSION["cart_item"]);
+				}
+			}
+		break;
+		case "empty":
+			unset($_SESSION["cart_item"]);
+		break;	
+	}
+}
+?>
+...
+
+<div id="shopping-cart">
+<div class="txt-heading">Shopping Cart </div>
+<?php
+if(isset($_SESSION["cart_item"])){
+    $item_total = 0;
+?>	
+<?php foreach ($_SESSION["cart_item"] as $item) { 
+		$product_info = $db_handle->runQuery("SELECT * FROM tblproduct WHERE code = '" . $item["code"] . "'");
+?>
+	<div class="product-item" onMouseOver="document.getElementById('<?php echo $item["code"]; ?>').style.display='block';"  onMouseOut="document.getElementById('<?php echo $item["code"]; ?>').style.display='';" >
+		<div class="product-image"><img src="<?php echo $product_info[0]["image"]; ?>"></div>
+		<div><strong><?php echo $item["name"]; ?></strong></div>
+		<div class="product-price"><?php echo "$".$item["price"]; ?></div>
+		<div>Quantity: <?php echo $item["quantity"]; ?></div>
+		<div class="btnRemoveAction" id="<?php echo $item["code"]; ?>"><a href="shopping_cart.php?action=remove&code=<?php echo $item["code"]; ?>" title="Remove from Cart">x</a></div>
+	</div>
+<?php
+	}
+}
+?>
+<div class="cart_footer_link">
+<a href="shopping_cart.php?action=empty">Clear Cart</a>
+<a href="index.php" title="Cart">Continue Shopping</a>
+</div>
+</div>
 
 
 
