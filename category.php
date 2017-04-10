@@ -3,7 +3,7 @@ require('./includes/config.inc.php');
 require(MYSQL);
 include('./includes/header.html');
 
-$category_name = $_GET['id']; 
+$category_name = $_GET['id'];
 ?>
 <div id="all">
 
@@ -12,9 +12,14 @@ $category_name = $_GET['id'];
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li>
+                            <a href="\index.php">Home</a>
                         </li>
-                        <li>Ladies</li>
+                        <?php 
+                            if($category_name == "women") echo '<li>Women</li>';
+                            elseif($category_name == "men") echo '<li>Men</li>';
+                            elseif($category_name == "retro") echo '<li>Retro Items</li>';
+                        ?>
                     </ul>
                 </div>
 
@@ -30,41 +35,31 @@ $category_name = $_GET['id'];
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
                                 <li>
-                                    <a href="category.html">Men <span class="badge pull-right">42</span></a>
+                                    <a href="category.html">Men <span class="badge pull-right">3</span></a>
                                     <ul>
-                                        <li><a href="category.html">T-shirts</a>
+                                        <li><a href="category.php?id=men">T-shirts</a>
                                         </li>
-                                        <li><a href="category.html">Shirts</a>
+                                        <li><a href="category.php?id=men">Shirts</a>
                                         </li>
-                                        <li><a href="category.html">Pants</a>
-                                        </li>
-                                        <li><a href="category.html">Accessories</a>
+                                        <li><a href="category.php?id=men">Pants</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="active">
-                                    <a href="category.html">Ladies  <span class="badge pull-right">123</span></a>
+                                    <a href="category.html">Women  <span class="badge pull-right">3</span></a>
                                     <ul>
-                                        <li><a href="category.html">T-shirts</a>
+                                        <li><a href="category.php?id=women">T-shirts</a>
                                         </li>
-                                        <li><a href="category.html">Skirts</a>
-                                        </li>
-                                        <li><a href="category.html">Pants</a>
-                                        </li>
-                                        <li><a href="category.html">Accessories</a>
+                                        <li><a href="category.php?id=women">Pants</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="category.html">Kids  <span class="badge pull-right">11</span></a>
                                     <ul>
-                                        <li><a href="category.html">T-shirts</a>
+                                        <li><a href="category.php?id=men">T-shirts</a>
                                         </li>
-                                        <li><a href="category.html">Skirts</a>
-                                        </li>
-                                        <li><a href="category.html">Pants</a>
-                                        </li>
-                                        <li><a href="category.html">Accessories</a>
+                                        <li><a href="category.php?id=men">Pants</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -74,7 +69,7 @@ $category_name = $_GET['id'];
                         </div>
                     </div>
 
-                    <div class="panel panel-default sidebar-menu">
+                    <!-- <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
                             <h3 class="panel-title">Brands <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> Clear</a></h3>
@@ -111,9 +106,9 @@ $category_name = $_GET['id'];
                             </form>
 
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="panel panel-default sidebar-menu">
+                   <!--  <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
                             <h3 class="panel-title">Colours <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> Clear</a></h3>
@@ -155,7 +150,7 @@ $category_name = $_GET['id'];
                             </form>
 
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- *** MENUS AND FILTERS END *** -->
 
@@ -167,19 +162,19 @@ $category_name = $_GET['id'];
                 </div>
 
                 <div class="col-md-9">
-                    <div class="box">
-                        <h1>Ladies</h1>
-                        <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected from the past.</p>
+                    <div class="box" <?php if($category_name != "women") echo 'style = "display: none"'?> id = "women_box">
+                        <h1>Women</h1>
+                        <p>In our Women's department we offer wide selection of the best products we have found and carefully selected from the past.</p>
                     </div>
-                    <div class="box" style = "display: none">
+                    <div class="box" <?php if($category_name != "men") echo 'style = "display: none"'?> id = "men_box">
                         <h1>Men</h1>
                         <p>Check out all of our latest products for Men. We have various items from the past, and customizable options as well!</p>
                     </div>
-                    <div class="box" style = "display: none">
+                    <div class="box" <?php if($category_name != "boys") echo 'style = "display: none"'?> id = "boys_box">
                         <h1>Boys</h1>
                         <p>Check out all of our latest products for Boys. We have various items from the past, and customizable options as well!</p>
                     </div>
-                    <div class="box" style = "display: none">
+                    <div class="box" <?php if($category_name != "girls") echo 'style = "display: none"'?> id = "girls__box">
                         <h1>Girls</h1>
                         <p>Check out all of our latest products for Girls. We have various items from the past, and customizable options as well!</p>
                     </div>
@@ -241,7 +236,7 @@ if($category_name == 'retro'){
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.html">' . $row["name"] . '</a></h3>
-                                    <p class="price">' . $row["price"] . '</p>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
                                     <p class="buttons">
                                         <a href="detail.html" class="btn btn-default">View detail</a>
                                         <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -254,9 +249,79 @@ if($category_name == 'retro'){
         '; 
     }
 } else if($category_name == 'men'){
-    echo 'Searching for men\'s products';
+    $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 1 ORDER BY id ASC");
+    while($row = $product_array->fetch_assoc()) {
+    //foreach($product_array as $key=>$value){
+    echo '                    <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["name"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <a href="detail.html" class="btn btn-default">View detail</a>
+                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
 } else if($category_name == 'women'){
-    echo 'Searching for women\'s products';
+    $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 2 ORDER BY id ASC");
+    while($row = $product_array->fetch_assoc()) {
+    //foreach($product_array as $key=>$value){
+    echo '                    <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">' . $row["name"] . '</a></h3>
+                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                    <p class="buttons">
+                                        <a href="detail.html" class="btn btn-default">View detail</a>
+                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>             
+        '; 
+    }
 } else{
     echo 'Sorry, that category is no longer being offered on our site. For further information, ask us on our Social Media or email support';
 }
