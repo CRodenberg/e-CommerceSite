@@ -3,7 +3,12 @@ require('./includes/config.inc.php');
 require(MYSQL);
 include('./includes/header.html');
 
-$category_name = $_GET['id'];
+
+if(isset($_GET['id'])){
+  $category_name = $_GET['id'];  
+}else{
+    $category_name = 'retro';
+}
 ?>
 <div id="all">
 
@@ -34,8 +39,8 @@ $category_name = $_GET['id'];
 
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
-                                <li>
-                                    <a href="category.html">Men <span class="badge pull-right">3</span></a>
+                                <li id = "men_tab">
+                                    <a href="category.php?id=men">Men <span class="badge pull-right">3</span></a>
                                     <ul>
                                         <li><a href="category.php?id=men">T-shirts</a>
                                         </li>
@@ -45,8 +50,8 @@ $category_name = $_GET['id'];
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="active">
-                                    <a href="category.html">Women  <span class="badge pull-right">3</span></a>
+                                <li id = "women_tab" class="active">
+                                    <a href="category.php?id=women">Women  <span class="badge pull-right">3</span></a>
                                     <ul>
                                         <li><a href="category.php?id=women">T-shirts</a>
                                         </li>
@@ -54,8 +59,8 @@ $category_name = $_GET['id'];
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="category.html">Kids  <span class="badge pull-right">11</span></a>
+                                <li id = "kids_tab">
+                                    <a href="category.php?id=men">Kids  <span class="badge pull-right">11</span></a>
                                     <ul>
                                         <li><a href="category.php?id=men">T-shirts</a>
                                         </li>
@@ -63,7 +68,9 @@ $category_name = $_GET['id'];
                                         </li>
                                     </ul>
                                 </li>
-
+                                <li id = "retro_tab">
+                                    <a href="category.php?id=retro">Retro Items  <span class="badge pull-right">10</span></a>
+                                </li>
                             </ul>
 
                         </div>
@@ -211,42 +218,47 @@ $category_name = $_GET['id'];
                     <div class="row products">
 <!--PHP Code to Generate the Products from the Database. As of 4/9/17, this code will also check to see whether the user searched for Men, Women, or Retro-->
 <?php
+if(empty($_SESSION['cart'])){
+  $_SESSION['cart'] = array();
+}
 if($category_name == 'retro'){
     $product_array = $dbc->query("SELECT * FROM decade_products ORDER BY id ASC");
     while($row = $product_array->fetch_assoc()) {
-    //foreach($product_array as $key=>$value){
-    echo '                    <div class="col-md-4 col-sm-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <a href="detail.html">
-                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                        <div class="back">
-                                            <a href="detail.html">
-                                                <img src="'. $row["image"] .'" alt="" class="img-responsive">
-                                            </a>
+
+        $id = $row['id'];
+
+        echo '                    <div class="col-md-4 col-sm-6">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <a href="detail.html" class="invisible">
+                                        <img src="'. $row["image"] .'" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">' . $row["name"] . '</a></h3>
+                                        <p class="price">' . '$' . $row["price"]/100 . '</p>
+                                        <p class="buttons">
+                                            <a href="detail.html" class="btn btn-default">View detail</a>
+                                            <a href="basket.php?buy=' . $id . '" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </p>
+                                    </div>
+                                    <!-- /.text -->
                                 </div>
-                                <a href="detail.html" class="invisible">
-                                    <img src="'. $row["image"] .'" alt="" class="img-responsive">
-                                </a>
-                                <div class="text">
-                                    <h3><a href="detail.html">' . $row["name"] . '</a></h3>
-                                    <p class="price">' . '$' . $row["price"]/100 . '</p>
-                                    <p class="buttons">
-                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </p>
-                                </div>
-                                <!-- /.text -->
-                            </div>
-                            <!-- /.product -->
-                        </div>             
-        '; 
+                                <!-- /.product -->
+                            </div>             
+            '; 
     }
 } else if($category_name == 'men'){
     $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 1 ORDER BY id ASC");
@@ -364,6 +376,17 @@ if($category_name == 'retro'){
             <!-- /.container -->
         </div>
         <!-- /#content -->
+<script type="text/javascript">
+    var TB = TB || {};
+    TB.Categories = {};
+
+    TB.SetTab = function(){
+
+    }
+
+
+</script>
+
 
 <?php
 include('./includes/footer.html');

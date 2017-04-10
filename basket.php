@@ -37,7 +37,39 @@ include('./includes/header.html');
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <?php
+                                            if(isset($_GET['buy'])){
+                                              $product_id = $_GET['buy'];
+                                              if(isset($_SESSION['cart'])){
+                                                array_push($_SESSION['cart'],$product_id);
+                                                }
+                                            }
+                                            if(empty($_SESSION['cart'])){
+                                                echo 'Your Cart is Empty!';
+                                            }
+                                            else{
+                                                foreach($_SESSION['cart'] as $cart_item){
+                                                    echo $cart_item;
+
+                                                }
+                                            }
+
+
+
+
+                                        ?>
+
+
+
+
+
+
+
+
+
+
+
+                                       <!--  <tr>
                                             <td>
                                                 <a href="#">
                                                     <img src="img/detailsquare.jpg" alt="White Blouse Armani">
@@ -70,7 +102,7 @@ include('./includes/header.html');
                                             <td>$200.00</td>
                                             <td><a href="#"><i class="fa fa-trash-o"></i></a>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -85,7 +117,7 @@ include('./includes/header.html');
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                    <a href="category.php?id=retro" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                 </div>
                                 <div class="pull-right">
                                     <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
@@ -258,5 +290,5 @@ include('./includes/header.html');
         <!-- /#content -->
 
 <?php
-include('./includes/footer.html');
+    include('./includes/footer.html');
 ?>
