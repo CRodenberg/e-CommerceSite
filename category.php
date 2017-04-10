@@ -1,7 +1,9 @@
 <?php
 require('./includes/config.inc.php');
 require(MYSQL);
-include('./includes/header.html')
+include('./includes/header.html');
+
+$category_name = $_GET['id']; 
 ?>
 <div id="all">
 
@@ -157,11 +159,11 @@ include('./includes/header.html')
 
                     <!-- *** MENUS AND FILTERS END *** -->
 
-                    <div class="banner">
+                   <!--  <div class="banner">
                         <a href="#">
                             <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-md-9">
@@ -212,7 +214,9 @@ include('./includes/header.html')
                     </div>
 
                     <div class="row products">
+<!--PHP Code to Generate the Products from the Database. As of 4/9/17, this code will also check to see whether the user searched for Men, Women, or Retro-->
 <?php
+if($category_name == 'retro'){
     $product_array = $dbc->query("SELECT * FROM decade_products ORDER BY id ASC");
     while($row = $product_array->fetch_assoc()) {
     //foreach($product_array as $key=>$value){
@@ -246,10 +250,22 @@ include('./includes/header.html')
                                 <!-- /.text -->
                             </div>
                             <!-- /.product -->
-                        </div>
+                        </div>             
+        '; 
+    }
+} else if($category_name == 'men'){
+    echo 'Searching for men\'s products';
+} else if($category_name == 'women'){
+    echo 'Searching for women\'s products';
+} else{
+    echo 'Sorry, that category is no longer being offered on our site. For further information, ask us on our Social Media or email support';
+}
 
-                    
-'; } ?>
+
+
+?>
+<!--End PHP Code for Generating Products -->
+
                     </div>
                     <!-- /.products -->
                     <div class="pages">
