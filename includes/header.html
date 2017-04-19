@@ -27,7 +27,7 @@
     <link href="css/owl.theme.css" rel="stylesheet">
 
     <!-- theme stylesheet -->
-    <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
     <!-- your stylesheet with modifications -->
     <link href="css/custom.css" rel="stylesheet">
@@ -116,7 +116,7 @@
                         <i class="fa fa-search"></i>
                     </button>
                     <a class="btn btn-default navbar-toggle" href="basket.php">
-                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"><?php if(isset($_SESSION['cart'])){ echo sizeof($_SESSION['cart']);} else{ echo 0;} ?> items in cart</span>
                     </a>
                 </div>
             </div>
@@ -236,7 +236,7 @@
                                         <div class="col-sm-3">
                                             <h5>Clothing</h5>
                                             <ul>
-                                                <li><a href="category.php">T-shirts</a>
+                                                <li><a href="customize.php">T-shirts</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -254,7 +254,7 @@
             <div class="navbar-buttons">
 
                 <div class="navbar-collapse collapse right" id="basket-overview">
-                    <a href="basket.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+                    <a href="basket.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm"><?php if(isset($_SESSION['cart'])){ echo sizeof($_SESSION['cart']); } else{ echo 0;}?> items in cart</span></a>
                 </div>
                 <!--/.nav-collapse -->
 

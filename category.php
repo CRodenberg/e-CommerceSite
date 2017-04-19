@@ -1,9 +1,13 @@
 <?php
+
 require('./includes/config.inc.php');
 require(MYSQL);
 include('./includes/header.html');
 
+//Encode the URL
+$current_url = urlencode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
+//Get the searched id from the URL. If an id is not set, then default the category to retro
 if(isset($_GET['id'])){
   $category_name = $_GET['id'];  
 }else{
@@ -39,8 +43,8 @@ if(isset($_GET['id'])){
 
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
-                                <li id = "men_tab">
-                                    <a href="category.php?id=men">Men <span class="badge pull-right">3</span></a>
+                                <li id = "men_tab" <?php if($category_name == "men") echo 'class="active"'; ?>>
+                                    <a href="category.php?id=men">Men</a>
                                     <ul>
                                         <li><a href="category.php?id=men">T-shirts</a>
                                         </li>
@@ -50,8 +54,8 @@ if(isset($_GET['id'])){
                                         </li>
                                     </ul>
                                 </li>
-                                <li id = "women_tab" class="active">
-                                    <a href="category.php?id=women">Women  <span class="badge pull-right">3</span></a>
+                                <li id = "women_tab" <?php if($category_name == "women") echo 'class="active"'; ?>>
+                                    <a href="category.php?id=women">Women</a>
                                     <ul>
                                         <li><a href="category.php?id=women">T-shirts</a>
                                         </li>
@@ -59,8 +63,8 @@ if(isset($_GET['id'])){
                                         </li>
                                     </ul>
                                 </li>
-                                <li id = "kids_tab">
-                                    <a href="category.php?id=men">Kids  <span class="badge pull-right">11</span></a>
+                                <li id = "kids_tab" <?php if($category_name == "kids") echo 'class="active"'; ?>>
+                                    <a href="category.php?id=men">Kids</a>
                                     <ul>
                                         <li><a href="category.php?id=men">T-shirts</a>
                                         </li>
@@ -68,104 +72,13 @@ if(isset($_GET['id'])){
                                         </li>
                                     </ul>
                                 </li>
-                                <li id = "retro_tab">
-                                    <a href="category.php?id=retro">Retro Items  <span class="badge pull-right">10</span></a>
+                                <li id = "retro_tab" <?php if($category_name == "retro") echo 'class="active"'; ?>>
+                                    <a href="category.php?id=retro">Retro Items</a>
                                 </li>
                             </ul>
 
                         </div>
                     </div>
-
-                    <!-- <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Brands <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> Clear</a></h3>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <form>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Armani (10)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Versace (12)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Carlo Bruni (15)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Jack Honey (14)
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Apply</button>
-
-                            </form>
-
-                        </div>
-                    </div> -->
-
-                   <!--  <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Colours <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> Clear</a></h3>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <form>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> <span class="colour white"></span> White (14)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> <span class="colour blue"></span> Blue (10)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> <span class="colour green"></span> Green (20)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> <span class="colour yellow"></span> Yellow (13)
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> <span class="colour red"></span> Red (10)
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Apply</button>
-
-                            </form>
-
-                        </div>
-                    </div> -->
-
-                    <!-- *** MENUS AND FILTERS END *** -->
-
-                   <!--  <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div> -->
                 </div>
 
                 <div class="col-md-9">
@@ -218,15 +131,20 @@ if(isset($_GET['id'])){
                     <div class="row products">
 <!--PHP Code to Generate the Products from the Database. As of 4/9/17, this code will also check to see whether the user searched for Men, Women, or Retro-->
 <?php
+
+//Check if the cart is empty. If true, initialize the cart session.
 if(empty($_SESSION['cart'])){
   $_SESSION['cart'] = array();
 }
+
+//Check if the category is retro. If so, select all retro products from the DB. Display all products.
 if($category_name == 'retro'){
-    $product_array = $dbc->query("SELECT * FROM decade_products ORDER BY id ASC");
+    $product_array = $dbc->query("SELECT * FROM decade_products ORDER BY id ASC");//DB Call
     while($row = $product_array->fetch_assoc()) {
 
-        $id = $row['id'];
+        $id = $row['product_code'];//Set $id = product. This will be passed through the URL.
 
+        //echo the html for the individual products along with their values from the database
         echo '                    <div class="col-md-4 col-sm-6">
                                 <div class="product">
                                     <div class="flip-container">
@@ -250,7 +168,7 @@ if($category_name == 'retro'){
                                         <h3><a href="detail.html">' . $row["name"] . '</a></h3>
                                         <p class="price">' . '$' . $row["price"]/100 . '</p>
                                         <p class="buttons">
-                                            <a href="detail.html" class="btn btn-default">View detail</a>
+                                            <a href="#" class="btn btn-default">View detail</a>
                                             <a href="basket.php?buy=' . $id . '" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </p>
                                     </div>
@@ -259,11 +177,14 @@ if($category_name == 'retro'){
                                 <!-- /.product -->
                             </div>             
             '; 
-    }
-} else if($category_name == 'men'){
+    }//End while
+}//End if
+
+//Check if the category is men. If so, select all men products from the DB. Display all products.
+else if($category_name == 'men'){
     $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 1 ORDER BY id ASC");
     while($row = $product_array->fetch_assoc()) {
-    //foreach($product_array as $key=>$value){
+
     echo '                    <div class="col-md-4 col-sm-6">
                             <div class="product">
                                 <div class="flip-container">
@@ -297,7 +218,8 @@ if($category_name == 'retro'){
                         </div>             
         '; 
     }
-} else if($category_name == 'women'){
+}//End else if
+else if($category_name == 'women'){
     $product_array = $dbc->query("SELECT * FROM specific_products WHERE general_categories_id = 2 ORDER BY id ASC");
     while($row = $product_array->fetch_assoc()) {
     //foreach($product_array as $key=>$value){
@@ -334,11 +256,26 @@ if($category_name == 'retro'){
                         </div>             
         '; 
     }
-} else{
+}//else if
+else{
     echo 'Sorry, that category is no longer being offered on our site. For further information, ask us on our Social Media or email support';
 }
 
+// if(isset($_SESSION["cart"]) && count($_SESSION["cart"]) > 0){
+//     $total = 0;
+//     $b = 0;
+//     foreach($_SESSION["cart"] as $cart_itm){
+//         $product_name = $cart_itm["name"];
+//         $product_qty = $cart_itm["product_qty"];
+//         $product_price = $cart_itm["price"];
+//         $product_code = $cart_itm["product_code"];
 
+//         $subtotal = ($product_price * $product_qty);
+//         $total = ($total + $subtotal);
+//     }
+
+//     $current_url = urlencode($url="http://". $SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+// }
 
 ?>
 <!--End PHP Code for Generating Products -->

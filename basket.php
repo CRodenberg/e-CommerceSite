@@ -1,6 +1,12 @@
 <?php
 require('./includes/config.inc.php');
 require(MYSQL);
+if(isset($_GET['buy'])){
+  $product_id = $_GET['buy'];
+  if(isset($_SESSION['cart'])){
+    array_push($_SESSION['cart'],$product_id);
+    }
+}
 include('./includes/header.html');
 ?>
 
@@ -11,7 +17,7 @@ include('./includes/header.html');
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="\index.php">Home</a>
                         </li>
                         <li>Shopping cart</li>
                     </ul>
@@ -21,10 +27,10 @@ include('./includes/header.html');
 
                     <div class="box">
 
-                        <form method="post" action="checkout1.html">
+                        <form method="post" action="cart_update.php">
 
                             <h1>Shopping cart</h1>
-                            <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+                            <p class="text-muted">You currently have <?php if(isset($_SESSION['cart'])){echo sizeof($_SESSION['cart']);} else{ echo 0;}?> item(s) in your cart.</p>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -38,76 +44,43 @@ include('./includes/header.html');
                                     </thead>
                                     <tbody>
                                         <?php
-                                            if(isset($_GET['buy'])){
-                                              $product_id = $_GET['buy'];
-                                              if(isset($_SESSION['cart'])){
-                                                array_push($_SESSION['cart'],$product_id);
-                                                }
-                                            }
                                             if(empty($_SESSION['cart'])){
                                                 echo 'Your Cart is Empty!';
                                             }
                                             else{
+                                                $total = 0;
                                                 foreach($_SESSION['cart'] as $cart_item){
-                                                    echo $cart_item;
+                                                    $cart_array = $dbc->query("SELECT * FROM decade_products WHERE product_code =" . $cart_item);//DB Call
+                                                    $row = $cart_array->fetch_assoc();
+                                                    $total += ($row["price"]/100);
+                                                    echo '<tr>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <img src="' . $row["image"] . '" alt="' . $row["image"] . '">
+                                                                </a>
+                                                            </td>
+                                                            <td><a href="#">' . $row["name"] . '</a>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" value="1" class="form-control">
+                                                            </td>
+                                                            <td>$' . $row["price"]/100 . '</td>
+                                                            <td>$0.00</td>
+                                                            <td>$' . $row["price"]/100 . '</td>
+                                                            <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                                            </td>
+                                                        </tr>';
 
                                                 }
                                             }
 
-
-
-
                                         ?>
 
-
-
-
-
-
-
-
-
-
-
-                                       <!--  <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td><a href="#">White Blouse Armani</a>
-                                            </td>
-                                            <td>
-                                                <input type="number" value="2" class="form-control">
-                                            </td>
-                                            <td>$123.00</td>
-                                            <td>$0.00</td>
-                                            <td>$246.00</td>
-                                            <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td><a href="#">Black Blouse Armani</a>
-                                            </td>
-                                            <td>
-                                                <input type="number" value="1" class="form-control">
-                                            </td>
-                                            <td>$200.00</td>
-                                            <td>$0.00</td>
-                                            <td>$200.00</td>
-                                            <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr> -->
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th colspan="5">Total</th>
-                                            <th colspan="2">$446.00</th>
+                                            <th colspan="2">$<?php if(isset($total)) echo $total; else echo "0.00"; ?></th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -130,103 +103,7 @@ include('./includes/header.html');
 
                     </div>
                     <!-- /.box -->
-
-
-                    <div class="row same-height-row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="box same-height">
-                                <h3>You may also like these products</h3>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product same-height">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <a href="detail.html">
-                                                <img src="img/product2.jpg" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                        <div class="back">
-                                            <a href="detail.html">
-                                                <img src="img/product2_2.jpg" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible">
-                                    <img src="img/product2.jpg" alt="" class="img-responsive">
-                                </a>
-                                <div class="text">
-                                    <h3>Fur coat</h3>
-                                    <p class="price">$143</p>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                        </div>
-
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product same-height">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <a href="detail.html">
-                                                <img src="img/product1.jpg" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                        <div class="back">
-                                            <a href="detail.html">
-                                                <img src="img/product1_2.jpg" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible">
-                                    <img src="img/product1.jpg" alt="" class="img-responsive">
-                                </a>
-                                <div class="text">
-                                    <h3>Fur coat</h3>
-                                    <p class="price">$143</p>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                        </div>
-
-
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product same-height">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <a href="detail.html">
-                                                <img src="img/product3.jpg" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                        <div class="back">
-                                            <a href="detail.html">
-                                                <img src="img/product3_2.jpg" alt="" class="img-responsive">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible">
-                                    <img src="img/product3.jpg" alt="" class="img-responsive">
-                                </a>
-                                <div class="text">
-                                    <h3>Fur coat</h3>
-                                    <p class="price">$143</p>
-
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                        </div>
-
-                    </div>
-
-
                 </div>
-                <!-- /.col-md-9 -->
 
                 <div class="col-md-3">
                     <div class="box" id="order-summary">
@@ -240,7 +117,7 @@ include('./includes/header.html');
                                 <tbody>
                                     <tr>
                                         <td>Order subtotal</td>
-                                        <th>$446.00</th>
+                                        <th>$<?php if(isset($total)) echo $total; else echo "0.00";?></th>
                                     </tr>
                                     <tr>
                                         <td>Shipping and handling</td>
@@ -252,7 +129,7 @@ include('./includes/header.html');
                                     </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <th>$456.00</th>
+                                        <th>$<?php if(isset($total)) echo ($total + 10); else echo "0.00";?></th>
                                     </tr>
                                 </tbody>
                             </table>

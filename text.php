@@ -11,9 +11,9 @@ include('./includes/header.html');
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
-                        <li>Text page</li>
+                        <li>About Us</li>
                     </ul>
                 </div>
 
@@ -29,13 +29,10 @@ include('./includes/header.html');
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <a href="text.html">Text page</a>
+                                    <a href="contact.php">Contact page</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact page</a>
-                                </li>
-                                <li>
-                                    <a href="faq.html">FAQ</a>
+                                    <a href="faq.php">FAQ</a>
                                 </li>
 
                             </ul>
@@ -44,69 +41,19 @@ include('./includes/header.html');
                     </div>
 
                     <!-- *** PAGES MENU END *** -->
-
-
-                    <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col-md-9">
 
                     <div class="box" id="text-page">
-                        <h1>Text formatting - Header level 1</h1>
+                        <h1>About Us</h1>
 
-                        <p class="lead">This page aim is to show you the most common HTML elements appearance on the website. For further reference please visit official <a href="http://getbootstrap.com/css/" class="external">Bootstrap website</a>.</p>
+                        <p class="lead">This company was founded around the principles of bringing everyone the pleasures and joys they experienced in the past.</p>
 
-                        <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris
-                            placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum
-                            rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+                        <p>Nostalgia has struck this company with the goal to bring great memories from the past back into light. As a newly founded company from Louisville, Kentucky, we aim to provide the best possible online store for personalized and pre-made items. The three creators of this site: Drew Greenwood, Robert Settles, and Cole Rodenberg attend Bellarmine University and started this company in class.</p>
 
-                        <h2>Header Level 2</h2>
-
-                        <ol>
-                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                            <li>Aliquam tincidunt mauris eu risus.</li>
-                        </ol>
-
-                        <blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-                                tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
-                        </blockquote>
-
-                        <h3>Header Level 3</h3>
-
-                        <ul>
-                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                            <li>Aliquam tincidunt mauris eu risus.</li>
-                        </ul>
-
-                        <hr>
-
-                        <h2>Images</h2>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p class="text-center">
-                                    <img src="img/detailsquare.jpg" class="img-circle img-responsive" alt="">
-                                </p>
-                                <p class="text-center">circle</p>
-                            </div>
-                            <div class="col-md-4">
-                                <p class="text-center">
-                                    <img src="img/detailsquare.jpg" class="img-thumbnail  img-responsive" alt="">
-                                </p>
-                                <p class="text-center">thumbnail</p>
-                            </div>
-                            <div class="col-md-4">
-                                <p class="text-center">
-                                    <img src="img/detailsquare.jpg" class="img-rounded img-responsive" alt="">
-                                </p>
-                                <p class="text-center">rounded</p>
-                            </div>
-                        </div>
+                        <h2>Learn More About Us!</h2>
+                        <p>If you would like to know more about the company or the founders, contact us on social media through the links at the bottom of the page! We love to engage with our customers!</p>
 
                     </div>
 

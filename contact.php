@@ -11,7 +11,7 @@ include('./includes/header.html');
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Contact</li>
                     </ul>
@@ -30,13 +30,10 @@ include('./includes/header.html');
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <a href="text.html">Text page</a>
+                                    <a href="text.php">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact page</a>
-                                </li>
-                                <li>
-                                    <a href="faq.html">FAQ</a>
+                                    <a href="faq.php">FAQ</a>
                                 </li>
 
                             </ul>
@@ -45,13 +42,6 @@ include('./includes/header.html');
                     </div>
 
                     <!-- *** PAGES MENU END *** -->
-
-
-                    <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col-md-9">

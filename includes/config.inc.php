@@ -5,12 +5,18 @@
 	}
 	DEFINE('CONTACT_EMAIL', 'crodenberg01@bellarmine.edu');//Update this when site goes live
 
+	$shipping_cost = 1.50; //shipping cost
+	$taxes = array(//List your tax percentage here
+					'VAT' => 12,
+					'Service Tax' => 5 
+					);
+
 	define('BASE_URI', '/xampp/htdocs/');//Change this to our path
 	define('BASE_URL', 'localhost/');//Change this to our base URL
 	define('MYSQL', BASE_URI . 'mysql.inc.php');
 
 	//Launch session to track logged-in users
-	//session_start();
+	session_start();
 
 	//Error-handling function
 	function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars){
