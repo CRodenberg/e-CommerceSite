@@ -1,1 +1,227 @@
 
+
+
+
+
+
+						
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+								
+									
+	
+
+
+ThrowbackHub Website 
+User’s Manual
+
+An Ecommerce Website 
+Design Project 
+By
+
+Cole Rodenberg
+Robert Settles
+Drew Greenwood
+Spring 2017
+
+
+Table of Contents
+Introduction ………………………………………………….. 4 
+
+Chapter 1
+Navigation through the ThrowbackHub Website	
+1.1	General Navigation ………………………………   5-6
+
+Chapter 2
+The ThrowbackHub Website					
+	2.1 	Home…………………………………………….. 6-7
+	2.2 	Men’s …...……………………………………….. 8-9
+	2.3 	Women’s ………………………………………… 9-10
+	2.4 	Retro Items ……………………………………… 11-12 
+	2.5	Customize ……………………………………….. 12-13
+	2.6 	About Us ………………………………………… 13-14
+
+
+
+
+
+
+
+
+
+
+Introduction
+
+
+
+Purpose:
+The purpose of this user’s manual is to help guide you through the various pages of the ThrowbackHub website.
+
+Background:
+We wish to reach people of all ages and we realized we needed an ecommerce site to allow our customers to see our products. We also decided to let our customers know a little about us and why we are selling what we are selling. 
+Several of the pages of the web site contain static information while others contain information that is obtained from an electronic database. 
+
+About the Developers:
+The developers for this project are Computer Science majors enrolled in the Ecommerce Technologies course during the Spring 2017 school semester. 
+
+The Web Site:
+The store’s website (http://www.XXXXX) consists of # main pages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 1
+Navigation through the ThrowbackHub Website	
+1.1	General Navigation
+To navigate through the ThrowbackHub website does not take any special skills or unique software. The web site was developed to be accessed from any web browser. 
+
+
+
+
+A standard Google Chrome page is shown above (displaying the ThrowbackHub’s Home Page). Explanations of common features are below:
+•	Refresh – the refresh button will fetch a fresh version of the webpage being displayed. This is valuable in cases where the data could have changed.
+•	Back – the back button allows you to go back to pages that you have previously viewed. 
+•	Forward – the forward button allows you to go forward to pages you have previously viewed.
+
+
+Chapter 2
+The ThrowbackHub Website					
+2.1 Home
+
+
+
+What does this page contain?
+ThrowbackHub’s home page contains the following information:
+Navigation bar – This bar can connect you to different pages throughout the site. The navigation bar runs across the top of the home page and contains the categories: Home, Men, Women, Retro Items, and Customize. The first button is home which will lead to a page where there is a slider that has 4 images, 3 telling a little about our products and the other slider involves information about us as well as contact information. The second button is the Men button; this will lead you to a page that displays a few Men’s items, which will help you make your decision on what to get. The third button is the Women button; which acts the same as the Men’s page and will display women’s products. The fourth button is the Retro Items button; this will lead to a drop down box titled ‘Decades,’ which has different buttons for each decade from the 1950’s to the 2000’s. Right now our site only contains a handful of the so-called retro items so whichever decade you click on it will pull up the same retro items for each (this is because we don’t have enough retro items in our database). The fifth button on our navigation bar is the Customize button which leads to a page where you could customize an item such as a t-shirt. These are the five buttons that make up the navigation bar. This bar is to aid you in navigating through the site without any frustrations of going back to the home page every time. It helps maintain a simple but informative web site. We have a footer on every page of our site that gives information about us such as where we are located and how customers can contact us. For the contact information we have a button that leads to a new page just about how to contact us, and it includes our address.    
+
+
+
+
+
+
+
+
+2.2 Men’s
+
+
+
+
+What does this page contain?
+The men’s page contains the following information:
+Navigation bar – This bar can connect you to more pages within the site which contain more information about what items are being sold that are men’s. It will lead to an option of three other pages. The first button is T-Shirts which will take you to a page that shows you a compilation of different t-shirts that are sold. The second button is labeled Shirts which lead you to a page that displays Shirts that are being sold. As of right now the T-Shirts and Shirts buttons will lead to the same pages since we don’t have a variety of different shirts for the time being. The third button under Men’s is pants which will lead to a page that contains pants that will help you in making a selection. In addition to the three buttons under the Men’s category, there is also a button labeled Boy’s which has three sub-buttons named T-Shirts, Shirts and Pants.    
+
+
+2.3 Women’s 
+
+
+
+
+
+What does this page contain?
+The Women’s page contains the following information:
+Navigation bar – This bar can connect you to additional pages within the site which contain more information about what items are being sold that are women’s. The Women’s button works the same way as the Men’s button, when you click on Women’s it will lead to an option of clicking on three separate buttons which are named T-Shirts, Shirts and Pants. Additionally, when you click on the Women’s button, the Girl’s button will be brought up as well and you have the option of going to T-Shirts, Shirts and Pants for girls. This works the exact same as the Men’s and Boy’s buttons. 
+On this page you will find pictures of various t-shirts and other items that are being sold specifically for women and girls. The pictures will aid in the selection process. 
+
+
+
+2.4 Retro Items
+
+
+
+
+
+What does this page contain?
+The Retro Item’s page contains the following information:
+ Navigation bar – This bar can connect you to additional pages within the site that contain information about the retro items that are being sold that are designed specifically for each specific decade starting with the 1950s. There are individual buttons for each decade that will lead you to a page that contains all the retro items that we are selling. We have yet to put more items in the database for each certain decade. Each item contains a short description of what it is and the price tag on it. 
+At the bottom of the page like it is on every page of the website we have our contact information along with our address if customers would like to get contact us. 
+
+
+2.5 Customize
+
+
+
+What does this page contain?
+The customize page is still under development. We would like to eventually have this lead to a page where you can customize a t-shirt or a different article of clothing so you can have your own unique shirt. As of right now when you click on the customize button, it leads to a dropdown box containing a button that is labeled T-Shirts. This leads to a page that says “Coming soon.”  
+
+
+2.6 About Us
+
+
+
+What does this page contain?
+The About Us page contains our company’s purpose and business case. It gives the background of the founders and developers of the site. It also contains the main navigation bar that is seen on every page that contains buttons which lead to the Men’s, Women’s, Retro Items, and Customize pages. Additionally, from this page you can go to the home page of the website by clicking on the Home button. We have a button labeled FAQ which will lead to a page that says “Work in progress,” because the site is not live so there has not been any questions. The About Us page can be accessed from any page on the website. It is located in our footer which is on every page. 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
