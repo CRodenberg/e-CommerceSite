@@ -1,7 +1,7 @@
 <?php
-	require(./includes/config.inc.php);
+	require('./includes/config.inc.php');
 	require(MYSQL);
-	include(./includes/header.html);
+	include('./includes/header.html');
 ?>
 
 <div id="all">
@@ -11,7 +11,7 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>FAQ</li>
                     </ul>
@@ -30,13 +30,7 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <a href="text.html">Text page</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact page</a>
-                                </li>
-                                <li>
-                                    <a href="faq.html">FAQ</a>
+                                    <a href="contact.php">Contact page</a>
                                 </li>
 
                             </ul>
@@ -45,13 +39,6 @@
                     </div>
 
                     <!-- *** PAGES MENU END *** -->
-
-
-                    <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col-md-9">
@@ -154,5 +141,5 @@
 
 
 <?php
-	include(./includes/footer.html);
+	include('./includes/footer.html');
 ?>

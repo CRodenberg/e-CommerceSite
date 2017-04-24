@@ -11,7 +11,7 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Checkout - Order review</li>
                     </ul>
@@ -23,18 +23,109 @@
                         <form method="post" action="checkout4.html">
                             <h1>Checkout - Order review</h1>
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-map-marker"></i><br>Address</a>
+                                <li><a href="#addressDiv"><i class="fa fa-map-marker"></i><br>Address</a>
                                 </li>
-                                <li><a href="#"><i class="fa fa-truck"></i><br>Delivery Method</a>
+                                <li><a href="#deliveryDiv"><i class="fa fa-truck"></i><br>Delivery Method</a>
                                 </li>
-                                <li><a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
+                                <li><a href="#paymentDiv"><i class="fa fa-money"></i><br>Payment Method</a>
                                 </li>
-                                <li class="active"><a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
+                                <li><a href="#orderDiv"><i class="fa fa-eye"></i><br>Order Review</a>
                                 </li>
                             </ul>
 
                             <div class="content">
+                            	<div class="row" id = "addressDiv">
+                            		<div class = "col-sm-12">
+                            			<h3>Address and Information</h3>
+                            		</div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="firstname">Firstname</label>
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="lastname">Lastname</label>
+                                            <input type="text" class="form-control" id="lastname">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="street">Street</label>
+                                            <input type="text" class="form-control" id="street">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="zip">ZIP</label>
+                                            <input type="text" class="form-control" id="zip">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="state">State</label>
+                                            <select class="form-control" id="state"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="phone">Telephone</label>
+                                            <input type="text" class="form-control" id="phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" id="email">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row" id = "deliveryDiv">
+                                	<div class = "col-sm-12">
+                                		<h3>Shipping Method</h3>
+                                	</div>
+                                    <div class="col-sm-6">
+                                        <div class="box shipping-method">
+
+                                            <h4>USPS Next Day</h4>
+
+                                            <p>Get it right on next day - fastest option possible.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row" id = "paymentDiv">
+                                	<div class = "col-sm-12">
+                                		<h3>Payment Method</h3>
+                                	</div>
+                                    <div class="col-sm-6">
+                                        <div class="box payment-method">
+
+                                            <h4>Paypal</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+								<div class = "col-sm-12" id = "orderDiv">
+                            		<h3>Order Review</h3>
+                            	</div>
                                 <div class="table-responsive">
+                                	
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -46,37 +137,47 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="#">
-                                                        <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                    </a>
-                                                </td>
-                                                <td><a href="#">White Blouse Armani</a>
-                                                </td>
-                                                <td>2</td>
-                                                <td>$123.00</td>
-                                                <td>$0.00</td>
-                                                <td>$246.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a href="#">
-                                                        <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                    </a>
-                                                </td>
-                                                <td><a href="#">Black Blouse Armani</a>
-                                                </td>
-                                                <td>1</td>
-                                                <td>$200.00</td>
-                                                <td>$0.00</td>
-                                                <td>$200.00</td>
-                                            </tr>
+                                            <?php
+                                            if(empty($_SESSION['cart'])){
+                                                echo 'Your Cart is Empty!';
+                                            }
+                                            else{
+                                                $total = 0;
+                                                $i = 0;
+                                                foreach($_SESSION['cart'] as $cart_item){
+                                                    if($cart_item >= 1000 && $cart_item < 2000){
+                                                        $cart_array = $dbc->query("SELECT * FROM decade_products WHERE product_code =" . $cart_item);//DB Call
+                                                    }else{
+                                                       $cart_array = $dbc->query("SELECT * FROM specific_products WHERE product_code =" . $cart_item);//DB Call 
+                                                    }
+                                                    $row = $cart_array->fetch_assoc();
+                                                    $total += ($row["price"]/100);
+                                                    echo '<tr>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <img src="' . $row["image"] . '" alt="' . $row["image"] . '">
+                                                                </a>
+                                                            </td>
+                                                            <td><a href="#">' . $row["name"] . '</a>
+                                                            </td>
+                                                            <td>
+                                                                1
+                                                            </td>
+                                                            <td>$' . $row["price"]/100 . '</td>
+                                                            <td>$0.00</td>
+                                                            <td>$' . $row["price"]/100 . '</td>
+                                                        </tr>';
+                                                    $i++;
+                                                }
+                                            }
+
+                                        ?>
+
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th colspan="5">Total</th>
-                                                <th>$446.00</th>
+                                                <th>$<?php if(isset($total)) echo $total; else echo "0.00"; ?></th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -88,11 +189,11 @@
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="checkout3.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Payment method</a>
+                                    <a href="basket.php" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Basket</a>
                                 </div>
                                 <div class="pull-right">
-                                    <button type="submit" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i>
-                                    </button>
+                                    <a href = "paypal.php" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </form>
@@ -116,7 +217,7 @@
                                 <tbody>
                                     <tr>
                                         <td>Order subtotal</td>
-                                        <th>$446.00</th>
+                                        <th>$<?php if(isset($total)) echo $total; else echo "0.00";?></th>
                                     </tr>
                                     <tr>
                                         <td>Shipping and handling</td>
@@ -128,7 +229,7 @@
                                     </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <th>$456.00</th>
+                                        <th>$<?php if(isset($total)) echo ($total + 10); else echo "0.00";?></th>
                                     </tr>
                                 </tbody>
                             </table>

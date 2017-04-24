@@ -7,8 +7,18 @@ if(isset($_GET['buy'])){
     array_push($_SESSION['cart'],$product_id);
     }
 }
+if(isset($_POST['index_to_remove']) && $_POST['index_to_remove'] != ""){
+    $key_to_remove = $_POST['index_to_remove'];
+    if(sizeof($_SESSION["cart"]) <= 1){
+        unset($_SESSION["cart"]);
+    }else{
+        unset($_SESSION["cart"]["$key_to_remove"]);
+        sort($_SESSION["cart"]);
+    }
+}
 include('./includes/header.html');
 ?>
+
 
     <div id="all">
 
@@ -27,7 +37,7 @@ include('./includes/header.html');
 
                     <div class="box">
 
-                        <form method="post" action="cart_update.php">
+                        <form method="post" action="basket.php">
 
                             <h1>Shopping cart</h1>
                             <p class="text-muted">You currently have <?php if(isset($_SESSION['cart'])){echo sizeof($_SESSION['cart']);} else{ echo 0;}?> item(s) in your cart.</p>
@@ -49,8 +59,13 @@ include('./includes/header.html');
                                             }
                                             else{
                                                 $total = 0;
+                                                $i = 0;
                                                 foreach($_SESSION['cart'] as $cart_item){
-                                                    $cart_array = $dbc->query("SELECT * FROM decade_products WHERE product_code =" . $cart_item);//DB Call
+                                                    if($cart_item >= 1000 && $cart_item < 2000){
+                                                        $cart_array = $dbc->query("SELECT * FROM decade_products WHERE product_code =" . $cart_item);//DB Call
+                                                    }else{
+                                                       $cart_array = $dbc->query("SELECT * FROM specific_products WHERE product_code =" . $cart_item);//DB Call 
+                                                    }
                                                     $row = $cart_array->fetch_assoc();
                                                     $total += ($row["price"]/100);
                                                     echo '<tr>
@@ -62,15 +77,17 @@ include('./includes/header.html');
                                                             <td><a href="#">' . $row["name"] . '</a>
                                                             </td>
                                                             <td>
-                                                                <input type="number" value="1" class="form-control">
+                                                                1
                                                             </td>
                                                             <td>$' . $row["price"]/100 . '</td>
                                                             <td>$0.00</td>
                                                             <td>$' . $row["price"]/100 . '</td>
-                                                            <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                                            <td>
+                                                                <form action = "basket.php" method = "post"><input name="deleteBtn' . $cart_item . '" type = "submit" value ="X"/><input name = "index_to_remove" type = "hidden" value = "'. $i .'"/>
+                                                                </form>
                                                             </td>
                                                         </tr>';
-
+                                                    $i++;
                                                 }
                                             }
 
@@ -94,8 +111,8 @@ include('./includes/header.html');
                                 </div>
                                 <div class="pull-right">
                                     <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
-                                    <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                                    </button>
+                                    <a href = "checkout.php" class = "btn btn-default">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                    </a>
                                 </div>
                             </div>
 

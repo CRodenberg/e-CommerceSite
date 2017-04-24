@@ -1,0 +1,1 @@
+<h3>Will redirect to Paypal when on an online server.</h3>
